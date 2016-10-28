@@ -288,6 +288,9 @@
         },
         "background": {
             "doc": "The background color or pattern of the map."
+        },
+				"shape": {
+            "doc": "A filled shape."
         }
       },
       "doc": "Rendering type of this layer."
@@ -343,7 +346,8 @@
     "layout_circle",
     "layout_symbol",
     "layout_raster",
-    "layout_background"
+    "layout_background",
+		"layout_shape"
   ],
   "layout_background": {
     "visibility": {
@@ -1362,6 +1366,30 @@
       }
     }
   },
+	"layout_shape": {
+		"visibility": {
+			"type": "enum",
+			"function": "piecewise-constant",
+			"zoom-function": true,
+			"values": {
+				"visible": {
+						"doc": "The layer is shown."
+				},
+				"none": {
+						"doc": "The layer is not shown."
+				}
+			},
+			"default": "visible",
+			"doc": "Whether this layer is displayed.",
+			"sdk-support": {
+				"basic functionality": {
+					"js": "0.10.0",
+					"ios": "2.0.0",
+					"android": "2.0.1"
+				}
+			}
+		}
+	},
   "filter": {
     "type": "array",
     "value": "*",
@@ -1546,7 +1574,8 @@
     "paint_circle",
     "paint_symbol",
     "paint_raster",
-    "paint_background"
+    "paint_background",
+		"paint_shape"
   ],
   "paint_fill": {
     "fill-antialias": {
@@ -2561,6 +2590,154 @@
           "js": "0.10.0",
           "ios": "2.0.0",
           "android": "2.0.1"
+        }
+      }
+    }
+  },
+  "paint_shape": {
+    "shape-radius": {
+      "type": "number",
+      "default": 5,
+      "minimum": 0,
+      "function": "interpolated",
+      "zoom-function": true,
+      "property-function": true,
+      "transition": true,
+      "units": "pixels",
+      "doc": "Shape radius.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "ios": "2.0.0",
+          "android": "2.0.1"
+        },
+        "data-driven styling": {
+          "js": "0.18.0"
+        }
+      }
+    },
+    "shape-color": {
+      "type": "color",
+      "default": "#000000",
+      "doc": "The fill color of the shape.",
+      "function": "interpolated",
+      "zoom-function": true,
+      "property-function": true,
+      "transition": true,
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "ios": "2.0.0",
+          "android": "2.0.1"
+        },
+        "data-driven styling": {
+          "js": "0.18.0"
+        }
+      }
+    },
+    "shape-blur": {
+      "type": "number",
+      "default": 0,
+      "doc": "Amount to blur the shape. 1 blurs the shape such that only the centerpoint is full opacity.",
+      "function": "interpolated",
+      "zoom-function": true,
+      "property-function": true,
+      "transition": true,
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "ios": "2.0.0",
+          "android": "2.0.1"
+        },
+        "data-driven styling": {
+          "js": "0.20.0"
+        }
+      }
+    },
+    "shape-opacity": {
+      "type": "number",
+      "doc": "The opacity at which the shape will be drawn.",
+      "default": 1,
+      "minimum": 0,
+      "maximum": 1,
+      "function": "interpolated",
+      "zoom-function": true,
+      "property-function": true,
+      "transition": true,
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "ios": "2.0.0",
+          "android": "2.0.1"
+        },
+        "data-driven styling": {
+          "js": "0.20.0"
+        }
+      }
+    },
+    "shape-translate": {
+      "type": "array",
+      "value": "number",
+      "length": 2,
+      "default": [0, 0],
+      "function": "interpolated",
+      "zoom-function": true,
+      "property-function": true,
+      "transition": true,
+      "units": "pixels",
+      "doc": "The geometry's offset. Values are [x, y] where negatives indicate left and up, respectively.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "ios": "2.0.0",
+          "android": "2.0.1"
+        }
+      }
+    },
+    "shape-translate-anchor": {
+      "type": "enum",
+      "function": "piecewise-constant",
+      "zoom-function": true,
+      "property-function": true,
+      "values": {
+        "map": {
+            "doc": "The shape is translated relative to the map."
+        },
+        "viewport": {
+            "doc": "The shape is translated relative to the viewport."
+        }
+      },
+      "doc": "Controls the translation reference point.",
+      "default": "map",
+      "requires": [
+        "shape-translate"
+      ],
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.10.0",
+          "ios": "2.0.0",
+          "android": "2.0.1"
+        }
+      }
+    },
+    "shape-pitch-scale": {
+      "type": "enum",
+      "function": "piecewise-constant",
+      "zoom-function": true,
+      "property-function": true,
+      "values": {
+        "map": {
+            "doc": "Shapes are scaled according to their apparent distance to the camera."
+        },
+        "viewport": {
+            "doc": "Shapes are not scaled."
+        }
+      },
+      "default": "map",
+      "doc": "Controls the scaling behavior of the shape when the map is pitched.",
+      "sdk-support": {
+        "basic functionality": {
+          "js": "0.21.0"
         }
       }
     }
