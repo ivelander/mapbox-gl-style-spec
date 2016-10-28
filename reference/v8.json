@@ -2740,7 +2740,13 @@
           "js": "0.21.0"
         }
       }
-    }
+    },
+		"shape-type": {
+			"type": "number",
+			"default": 1,
+	    "function": "piecewise-constant",
+	    "property-function": true
+		}
   },
   "transition": {
     "duration": {
