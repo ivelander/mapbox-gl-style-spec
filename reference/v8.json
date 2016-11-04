@@ -1403,7 +1403,30 @@
           "android": "2.0.1"
         }
       }
-    }
+    },
+		"icon-rotate": {
+			"type": "number",
+			"default": 0,
+			"period": 360,
+			"function": "interpolated",
+			"zoom-function": true,
+			"property-function": true,
+			"units": "degrees",
+			"doc": "Rotates the icon clockwise.",
+			"requires": [
+				"icon-image"
+			],
+			"sdk-support": {
+				"basic functionality": {
+					"js": "0.10.0",
+					"ios": "2.0.0",
+					"android": "2.0.1"
+				},
+				"data-driven styling": {
+					"js": "0.21.0"
+				}
+			}
+		}
 	},
   "filter": {
     "type": "array",
