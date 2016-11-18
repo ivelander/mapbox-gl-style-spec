@@ -2633,16 +2633,16 @@
     }
   },
   "paint_shape": {
-    "shape-radius": {
+    "shape-scale": {
       "type": "number",
-      "default": 5,
+      "default": 1,
       "minimum": 0,
       "function": "interpolated",
       "zoom-function": true,
       "property-function": true,
       "transition": true,
       "units": "pixels",
-      "doc": "Shape radius.",
+      "doc": "Scale factor for icon. 1 is original size, 3 triples the size.",
       "sdk-support": {
         "basic functionality": {
           "js": "0.10.0",
